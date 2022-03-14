@@ -100,5 +100,23 @@
       loadMainDartJs();
     }
   </script>
-</body>
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+		// TODO: Add SDKs for Firebase products that you want to use
+		// https://firebase.google.com/docs/web/setup#available-libraries
+
+		// Your web app's Firebase configuration
+		const firebaseConfig = {
+			apiKey: "AIzaSyCy0K3VIS6Uy1ZWMTs6twWlD4K0UwPgRDE",
+			authDomain: "muscle-training-counter.firebaseapp.com",
+			projectId: "muscle-training-counter",
+			storageBucket: "muscle-training-counter.appspot.com",
+			messagingSenderId: "726006556020",
+			appId: "1:726006556020:web:9870eb2f1bcb9cb8ce3821"
+		};
+
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+	</script>
 </html>
