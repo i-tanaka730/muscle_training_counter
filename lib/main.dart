@@ -34,6 +34,24 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+  void load() async {
+    var menuCollection = FirebaseFirestore.instance.collection('menu');
+    var udetateDocument = menuCollection.doc('腕立て伏せ').get();
+    await udetateDocument.then((DocumentSnapshot snapshot) {
+      var count = snapshot.get('count');
+      debugPrint(count.toString());
+      setState(() {
+        _counter = count as int;
+      });
+    });
+  }
+
   void _incrementCounter() async {
     setState(() {
       _counter++;
