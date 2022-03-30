@@ -41,9 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void load() async {
-    var menuCollection = FirebaseFirestore.instance.collection('menu');
-    var udetateDocument = menuCollection.doc('腕立て伏せ').get();
-    await udetateDocument.then((DocumentSnapshot snapshot) {
+    await FirebaseFirestore.instance.collection('menu').doc('腕立て伏せ').get().then((DocumentSnapshot snapshot) {
       var count = snapshot.get('count');
       debugPrint(count.toString());
       setState(() {
@@ -74,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'なんでもOK！',
+              'カウンター',
             ),
             Text(
               '$_counter',
