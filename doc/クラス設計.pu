@@ -1,0 +1,36 @@
+@startuml
+
+
+MyApp *-- TrainingListPage
+MyApp *-- TrainingInputPage
+
+TrainingListPage  -->  TrainingListViewModel
+TrainingInputPage  -->  TrainingInputViewModel
+
+TrainingListViewModel --> TrainingRepository
+TrainingInputViewModel --> TrainingRepository
+ChangeNotifier <|-- TrainingListViewModel
+
+TrainingListViewModel --> TrainingItem
+TrainingInputViewModel --> TrainingItem
+TrainingRepository --> TrainingItem
+
+class TrainingRepository {
+  - trainingItemList : List<TrainingItem>
+  + TrainingItem getTrainingItem(string Name)
+  + void addTrainingItem(string Name, int count)
+  + void updateTrainingItem(string Name, int count)
+  + void deleteTrainingItem(string Name)
+}
+note right of TrainingRepository::addTrainingItem
+  同じ名前は登録不可
+end note
+
+class TrainingItem {
+  - Name : string
+  - Count : int
+  + void changeName()
+  + void changeCount()
+}
+
+@enduml
