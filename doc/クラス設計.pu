@@ -29,8 +29,10 @@ end note
 class TrainingItem {
   - Name : string
   - Count : int
-  + void changeName()
-  + void changeCount()
+  + String getName()
+  + int getCount()
+  + void changeName(String name)
+  + void changeCount(int count)
 }
 
 @enduml
