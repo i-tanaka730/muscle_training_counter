@@ -1,9 +1,11 @@
 class TrainingItem {
-  String name;
-  int count;
+  String _name;
+  int _count;
 
-  TrainingItem(this.name, this.count);
+  TrainingItem(this._name, this._count);
 
-  void changeName(String name) => this.name = name;
-  void changeCount(int count) => this.count = count;
+  String getName() => _name;
+  int getCount() => _count;
+  void changeName(String name) => _name = name;
+  void changeCount(int count) => _count = count;
 }
