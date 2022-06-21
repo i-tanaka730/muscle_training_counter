@@ -1,6 +1,5 @@
 @startuml
 
-
 MyApp *-- TrainingListPage
 MyApp *-- TrainingInputPage
 
@@ -15,13 +14,41 @@ TrainingListViewModel --> TrainingItem
 TrainingInputViewModel --> TrainingItem
 TrainingRepository --> TrainingItem
 
-class TrainingRepository {
+class TrainingListViewModel {
   - trainingItemList : List<TrainingItem>
+  + List<TrainingItem> getAllTrainingItem(string Name)
+  + void updateTrainingItem(string Name, int count)
+}
+
+class TrainingInputViewModel {
+  - trainingItem : TrainingItem
   + TrainingItem getTrainingItem(string Name)
   + void addTrainingItem(string Name, int count)
   + void updateTrainingItem(string Name, int count)
   + void deleteTrainingItem(string Name)
 }
+
+class TrainingRepository {
+  + List<TrainingItem> getAllTrainingItem(string Name)
+  + TrainingItem getTrainingItem(string Name)
+  + void addTrainingItem(string Name, int count)
+  + void updateTrainingItem(string Name, int count)
+  + void deleteTrainingItem(string Name)
+}
+
+note left of TrainingRepository
+  ストア(FireStore)にアクセスして
+  データ操作を行う
+end note
+
+note right of TrainingRepository::getAllTrainingItem
+  TrainingItem.fromJsonのようにモデル化して返す
+end note
+
+note right of TrainingRepository::getTrainingItem
+  TrainingItem.fromJsonのようにモデル化して返す
+end note
+
 note right of TrainingRepository::addTrainingItem
   同じ名前は登録不可
 end note
