@@ -13,9 +13,9 @@ class TraningListPage extends StatefulWidget {
 
 class _MyHomePageState extends State<TraningListPage> {
   int _counter = 0;
-  List<TrainingItem> _traningItemlist = [
+  final List<TrainingItem> _traningItemlist = [
     TrainingItem("腕立て伏せ", 1500),
-    TrainingItem("腹筋", 800),
+    TrainingItem("腹筋", 99999),
     TrainingItem("スクワット", 3000)
   ];
 
@@ -57,24 +57,39 @@ class _MyHomePageState extends State<TraningListPage> {
           itemBuilder: (context, index) {
             var item = _traningItemlist[index];
             return Slidable(
-              child: Row(
-                //decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
-                children: <Widget>[
-                  Text(item.getName()),
-                  Text(_counter.toString()),
-                  ButtonBar(
-                    children: <Widget>[
-                      ElevatedButton(
-                        child: const Text('+'),
-                        onPressed: () {},
+              child: Container(
+                decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      margin: const EdgeInsets.only(left: 50),
+                      alignment: Alignment.centerLeft,
+                      height: 60,
+                      width: 200,
+                      child: Text(item.getName()),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      height: 60,
+                      width: 50,
+                      child: Text("999999"),
+                    ),
+                    Expanded(
+                      child: ButtonBar(
+                        children: <Widget>[
+                          ElevatedButton(
+                            child: const Text('+'),
+                            onPressed: () {},
+                          ),
+                          ElevatedButton(
+                            child: const Text('-'),
+                            onPressed: () {},
+                          ),
+                        ],
                       ),
-                      ElevatedButton(
-                        child: const Text('-'),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             );
           }),
