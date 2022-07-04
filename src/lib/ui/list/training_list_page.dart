@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
 import '../../model/training_item.dart';
+import '../input/training_input_page.dart';
 
 class TraningListPage extends StatefulWidget {
   const TraningListPage({Key? key}) : super(key: key);
@@ -35,16 +35,30 @@ class _MyHomePageState extends State<TraningListPage> {
     });
   }
 
-  void _incrementCounter() async {
-    setState(() {
-      _counter++;
-    });
-    // ドキュメント作成
-    await FirebaseFirestore.instance
-        .collection('menu') // コレクションID
-        .doc('腕立て伏せ') // ドキュメントID
-        .set({'count': _counter}); // データ
+  /// トレーニング入力・編集画面に遷移する
+  void _pushTraningInputPage([TrainingItem? item]) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return TrainingInputPage(item: item);
+        },
+      ),
+    );
+
+    // Todoの追加/更新を行う場合があるため、画面を更新する
+    setState(() {});
   }
+
+  // void _incrementCounter() async {
+  //   setState(() {
+  //     _counter++;
+  //   });
+  //   // ドキュメント作成
+  //   await FirebaseFirestore.instance
+  //       .collection('menu') // コレクションID
+  //       .doc('腕立て伏せ') // ドキュメントID
+  //       .set({'count': _counter}); // データ
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +95,22 @@ class _MyHomePageState extends State<TraningListPage> {
                 itemBuilder: (context, index) {
                   var item = _traningItemlist[index];
                   return Slidable(
+                    // 左方向にリストアイテムをスライドした場合のアクション
+                    endActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      extentRatio: 0.25,
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) {
+                            // 編集画面に遷移する
+                            _pushTraningInputPage(item);
+                          },
+                          backgroundColor: Colors.yellow,
+                          icon: Icons.edit,
+                          label: '編集',
+                        ),
+                      ],
+                    ),
                     child: Container(
                       decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
                       child: Row(
@@ -121,7 +151,9 @@ class _MyHomePageState extends State<TraningListPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed:
+            // 入力画面に遷移する
+            _pushTraningInputPage,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
