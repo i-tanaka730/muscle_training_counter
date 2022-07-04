@@ -52,47 +52,74 @@ class _MyHomePageState extends State<TraningListPage> {
       appBar: AppBar(
         title: const Text('筋トレ一覧'),
       ),
-      body: ListView.builder(
-          itemCount: _traningItemlist.length,
-          itemBuilder: (context, index) {
-            var item = _traningItemlist[index];
-            return Slidable(
-              child: Container(
-                decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.only(left: 50),
-                      alignment: Alignment.centerLeft,
-                      height: 60,
-                      width: 200,
-                      child: Text(item.getName()),
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      height: 60,
-                      width: 50,
-                      child: Text("999999"),
-                    ),
-                    Expanded(
-                      child: ButtonBar(
+      body: Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
+            alignment: Alignment.center,
+            height: 60,
+            width: double.infinity,
+            child: Row(children: <Widget>[
+              Container(
+                margin: const EdgeInsets.only(left: 50),
+                alignment: Alignment.centerLeft,
+                height: 60,
+                width: 200,
+                child: const Text("合計"),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                height: 60,
+                width: 50,
+                child: const Text("999999"),
+              ),
+            ]),
+          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: _traningItemlist.length,
+                itemBuilder: (context, index) {
+                  var item = _traningItemlist[index];
+                  return Slidable(
+                    child: Container(
+                      decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
+                      child: Row(
                         children: <Widget>[
-                          ElevatedButton(
-                            child: const Text('+'),
-                            onPressed: () {},
+                          Container(
+                            margin: const EdgeInsets.only(left: 50),
+                            alignment: Alignment.centerLeft,
+                            height: 60,
+                            width: 200,
+                            child: Text(item.getName()),
                           ),
-                          ElevatedButton(
-                            child: const Text('-'),
-                            onPressed: () {},
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            height: 60,
+                            width: 50,
+                            child: const Text("999999"),
+                          ),
+                          Expanded(
+                            child: ButtonBar(
+                              children: <Widget>[
+                                ElevatedButton(
+                                  child: const Text('+'),
+                                  onPressed: () {},
+                                ),
+                                ElevatedButton(
+                                  child: const Text('-'),
+                                  onPressed: () {},
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            );
-          }),
+                  );
+                }),
+          )
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
