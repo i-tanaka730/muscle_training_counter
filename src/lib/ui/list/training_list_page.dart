@@ -75,10 +75,10 @@ class _MyHomePageState extends State<TraningListPage> {
             width: double.infinity,
             child: Row(children: <Widget>[
               Container(
-                margin: const EdgeInsets.only(left: 50),
+                margin: const EdgeInsets.only(left: 20),
                 alignment: Alignment.centerLeft,
                 height: 60,
-                width: 200,
+                width: 120,
                 child: const Text("合計"),
               ),
               Container(
@@ -116,10 +116,10 @@ class _MyHomePageState extends State<TraningListPage> {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            margin: const EdgeInsets.only(left: 50),
+                            margin: const EdgeInsets.only(left: 20),
                             alignment: Alignment.centerLeft,
                             height: 60,
-                            width: 200,
+                            width: 120,
                             child: Text(item.getName()),
                           ),
                           Container(
