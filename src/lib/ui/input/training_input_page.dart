@@ -48,6 +48,27 @@ class _TrainingInputPageState extends State<TrainingInputPage> {
         padding: const EdgeInsets.all(30),
         child: Column(
           children: <Widget>[
+            // 削除ボタン
+            Container(
+              width: double.infinity,
+              alignment: Alignment.centerLeft,
+              child: SizedBox(
+                width: 100,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Todoリスト画面に戻る
+                    Navigator.of(context).pop();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red,
+                  ),
+                  child: const Text(
+                    "削除",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(height: 20),
             // 名前のテキストフィールド
             TextField(
