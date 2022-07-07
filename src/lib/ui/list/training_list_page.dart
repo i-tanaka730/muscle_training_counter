@@ -64,7 +64,7 @@ class _MyHomePageState extends State<TraningListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('筋トレ一覧'),
+        title: const Text('トレーニング一覧'),
       ),
       body: Column(
         children: [
