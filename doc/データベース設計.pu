@@ -4,7 +4,6 @@ entity 腕立て伏せ {
   --
    name (名前)
    count (回数)
-   unit (単位)
 }
 
 entity 腹筋 {
@@ -12,19 +11,17 @@ entity 腹筋 {
   --
    name (名前)
    count (回数)
-   unit (単位)
 }
 
-entity 瞑想 {
+entity スクワット {
    id
   --
    name (名前)
    count (回数)
-   unit (単位)
 }
 
 Menu ||..o| 腕立て伏せ
 Menu ||..o| 腹筋
-Menu ||..o| 瞑想
+Menu ||..o| スクワット
 
 @enduml

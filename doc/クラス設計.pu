@@ -23,7 +23,7 @@ class TrainingListViewModel {
 class TrainingInputViewModel {
   - trainingItem : TrainingItem
   + TrainingItem getTrainingItem(string Name)
-  + void addTrainingItem(string Name, int count)
+  + void addTrainingItem(string Name)
   + void updateTrainingItem(string Name, int count)
   + void deleteTrainingItem(string Name)
 }
@@ -31,7 +31,7 @@ class TrainingInputViewModel {
 class TrainingRepository {
   + List<TrainingItem> getAllTrainingItem(string Name)
   + TrainingItem getTrainingItem(string Name)
-  + void addTrainingItem(string Name, int count)
+  + void addTrainingItem(string Name)
   + void updateTrainingItem(string Name, int count)
   + void deleteTrainingItem(string Name)
 }
