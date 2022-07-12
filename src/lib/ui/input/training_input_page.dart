@@ -16,7 +16,7 @@ class TrainingInputPage extends StatefulWidget {
 
 class _TrainingInputPageState extends State<TrainingInputPage> {
   /// 新規追加か
-  late bool _isCreateTodo;
+  late bool _isCreate;
 
   /// 画面項目：名前
   late String _name;
@@ -32,7 +32,7 @@ class _TrainingInputPageState extends State<TrainingInputPage> {
 
     _name = item?.getName() ?? "";
     _count = item?.getCount() ?? 0;
-    _isCreateTodo = item == null;
+    _isCreate = item == null;
   }
 
   /// 画面を作成する
@@ -41,7 +41,7 @@ class _TrainingInputPageState extends State<TrainingInputPage> {
     return Scaffold(
       appBar: AppBar(
         // アプリケーションバーに表示するタイトル
-        title: Text(_isCreateTodo ? 'トレーニング追加' : 'トレーニング編集'),
+        title: Text(_isCreate ? 'トレーニング追加' : 'トレーニング編集'),
       ),
       body: Container(
         // 全体のパディング
@@ -49,22 +49,25 @@ class _TrainingInputPageState extends State<TrainingInputPage> {
         child: Column(
           children: <Widget>[
             // 削除ボタン
-            Container(
-              width: double.infinity,
-              alignment: Alignment.centerLeft,
-              child: SizedBox(
-                width: 100,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Todoリスト画面に戻る
-                    Navigator.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
-                  ),
-                  child: const Text(
-                    "削除",
-                    style: TextStyle(color: Colors.white),
+            Visibility(
+              visible: !_isCreate,
+              child: Container(
+                width: double.infinity,
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  width: 100,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Todoリスト画面に戻る
+                      Navigator.of(context).pop();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    child: const Text(
+                      "削除",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
@@ -121,7 +124,7 @@ class _TrainingInputPageState extends State<TrainingInputPage> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if (_isCreateTodo) {
+                  if (_isCreate) {
                     // TODO:トレーニングを追加する
                   } else {
                     // TODO:トレーニングを更新する
@@ -130,7 +133,7 @@ class _TrainingInputPageState extends State<TrainingInputPage> {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  _isCreateTodo ? '追加' : '更新',
+                  _isCreate ? '追加' : '更新',
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
