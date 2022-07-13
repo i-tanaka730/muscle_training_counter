@@ -5,5 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FireStoreTrainingRepository implements TrainingRepository {
   void addTraningItem(String name) {
     FirebaseFirestore.instance.collection('menu').add({'name': name, 'count': 0});
+    //FirebaseFirestore.instance.collection('menu').doc(name).set({'count': 0});
   }
 }

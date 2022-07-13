@@ -7,7 +7,7 @@ class TrainingInputViewModel extends ChangeNotifier {
   String get name => _name;
 
   final FireStoreTrainingRepository _repository = FireStoreTrainingRepository();
-  void addTraningItem(String name) {
-    _repository.addTraningItem(name);
+  void addTraningItem() {
+    _repository.addTraningItem(_name);
   }
 }
