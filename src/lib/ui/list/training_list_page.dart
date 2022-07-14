@@ -49,17 +49,6 @@ class _MyHomePageState extends State<TraningListPage> {
     setState(() {});
   }
 
-  // void _incrementCounter() async {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  //   // ドキュメント作成
-  //   await FirebaseFirestore.instance
-  //       .collection('menu') // コレクションID
-  //       .doc('腕立て伏せ') // ドキュメントID
-  //       .set({'count': _counter}); // データ
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

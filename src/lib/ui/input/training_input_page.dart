@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:muscle_training_counter/ui/input/training_input_view_model.dart';
 import '../../model/training_item.dart';
 import 'package:provider/provider.dart';
 
 class TrainingInputPage extends StatelessWidget {
-  /// Todoのモデル
   final TrainingItem? item;
-
-  /// 画面項目：名前
   late String _name;
-
-  /// 画面項目：回数
   late int _count;
 
   /// コンストラクタ
@@ -41,7 +37,7 @@ class TrainingInputPage extends StatelessWidget {
                   width: 100,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Todoリスト画面に戻る
+                      Provider.of<TrainingInputViewModel>(context).deleteTraningItem("id");
                       Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
@@ -72,15 +68,16 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
-              // TextEditingControllerを使用することで、いちいちsetStateしなくても画面を更新してくれる
-              controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).name),
+              //controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).name),
               onChanged: (String value) {
-//                  _name = value;
+                Provider.of<TrainingInputViewModel>(context, listen: false).changeName(value);
               },
             ),
             const SizedBox(height: 20),
             // 回数のテキストフィールド
             TextField(
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               autofocus: true,
               decoration: const InputDecoration(
                 labelText: "回数",
@@ -95,10 +92,9 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
-              // TextEditingControllerを使用することで、いちいちsetStateしなくても画面を更新してくれる
-              controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).name),
+              //controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).count.toString()),
               onChanged: (String value) {
-//                  _count = int.parse(value);
+                Provider.of<TrainingInputViewModel>(context, listen: false).changeCount(value);
               },
             ),
             const SizedBox(height: 20),
@@ -111,7 +107,8 @@ class TrainingInputPage extends StatelessWidget {
                     // トレーニングを追加する
                     Provider.of<TrainingInputViewModel>(context, listen: false).addTraningItem();
                   } else {
-                    // TODO:トレーニングを更新する
+                    // トレーニングを更新する
+                    Provider.of<TrainingInputViewModel>(context, listen: false).deleteTraningItem("");
                   }
                   // トレーニング一覧画面に戻る
                   Navigator.of(context).pop();
@@ -128,7 +125,6 @@ class TrainingInputPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Todoリスト画面に戻る
                   Navigator.of(context).pop();
                 },
                 style: ElevatedButton.styleFrom(

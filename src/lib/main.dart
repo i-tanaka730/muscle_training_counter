@@ -5,11 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:muscle_training_counter/ui/input/training_input_view_model.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); //←Firebaseを初期化する際に必要らしい
-  await Firebase.initializeApp(); //←Firebaseを初期化
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MultiProvider(
       providers: [
+        // TODO:各画面クラスに1つクラスを挟み、そこで登録すべき？
+        // https://github.com/yasukotelin/mvvm_example/blob/master/lib/ui/home/home_page.dart
         ChangeNotifierProvider(create: (_) => TrainingInputViewModel()),
       ],
       child: const MyApp(),
