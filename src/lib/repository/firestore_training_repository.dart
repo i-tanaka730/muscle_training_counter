@@ -4,14 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FireStoreTrainingRepository implements TrainingRepository {
   @override
-  List<TrainingItem> getAllTraningItems() {
-    var collection = FirebaseFirestore.instance.collection('menu');
+  Future<List<TrainingItem>> getAllTraningItems() async {
     List<TrainingItem> items = [];
-    collection.get().then((QuerySnapshot querySnapshot) {
+    await FirebaseFirestore.instance.collection('menu').get().then((QuerySnapshot querySnapshot) {
       var queryDocSnapshot = querySnapshot.docs;
       for (final snapshot in queryDocSnapshot) {
-        var name = snapshot.get('name');
-        var count = snapshot.get('count');
+        var name = "test"; //snapshot.get('name');
+        var count = 111; //snapshot.get('count');
         var item = TrainingItem(name, count);
         items.add(item);
       }

@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:muscle_training_counter/ui/input/training_input_view_model.dart';
-import '../../model/training_item.dart';
 import 'package:provider/provider.dart';
+import 'package:muscle_training_counter/ui/input/training_input_view_model.dart';
+import 'package:muscle_training_counter/model/training_item.dart';
 
 class TrainingInputPage extends StatelessWidget {
   final TrainingItem? item;
-  late String _name;
-  late int _count;
 
-  /// コンストラクタ
-  /// Todoを引数で受け取った場合は更新、受け取らない場合は追加画面となる
-  TrainingInputPage({Key? key, this.item}) : super(key: key);
+  const TrainingInputPage({Key? key, this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +64,6 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
-              //controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).name),
               onChanged: (String value) {
                 Provider.of<TrainingInputViewModel>(context, listen: false).changeName(value);
               },
@@ -78,7 +73,6 @@ class TrainingInputPage extends StatelessWidget {
             TextField(
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              autofocus: true,
               decoration: const InputDecoration(
                 labelText: "回数",
                 enabledBorder: OutlineInputBorder(
@@ -92,7 +86,6 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
-              //controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).count.toString()),
               onChanged: (String value) {
                 Provider.of<TrainingInputViewModel>(context, listen: false).changeCount(value);
               },
@@ -104,10 +97,8 @@ class TrainingInputPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (_isCreate) {
-                    // トレーニングを追加する
                     Provider.of<TrainingInputViewModel>(context, listen: false).addTraningItem();
                   } else {
-                    // トレーニングを更新する
                     Provider.of<TrainingInputViewModel>(context, listen: false).deleteTraningItem("");
                   }
                   // トレーニング一覧画面に戻る
