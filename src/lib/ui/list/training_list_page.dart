@@ -88,7 +88,7 @@ class TraningListPage extends StatelessWidget {
                             alignment: Alignment.centerLeft,
                             height: 60,
                             width: 50,
-                            child: const Text("999999"),
+                            child: Text(item.getCount().toString()),
                           ),
                           Expanded(
                             child: ButtonBar(

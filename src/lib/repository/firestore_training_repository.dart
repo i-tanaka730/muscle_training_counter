@@ -9,8 +9,8 @@ class FireStoreTrainingRepository implements TrainingRepository {
     await FirebaseFirestore.instance.collection('menu').get().then((QuerySnapshot querySnapshot) {
       var queryDocSnapshot = querySnapshot.docs;
       for (final snapshot in queryDocSnapshot) {
-        var name = "test"; //snapshot.get('name');
-        var count = 111; //snapshot.get('count');
+        var name = snapshot.get('name');
+        var count = snapshot.get('count');
         var item = TrainingItem(name, count);
         items.add(item);
       }
