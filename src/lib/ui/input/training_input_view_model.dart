@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:muscle_training_counter/repository/firestore_training_repository.dart';
+import '../../repository/training_repository.dart';
 
 class TrainingInputViewModel extends ChangeNotifier {
   String _name = "";
   int _count = 0;
+  late TrainingRepository _repository;
 
-  final FireStoreTrainingRepository _repository = FireStoreTrainingRepository();
+  TrainingInputViewModel(TrainingRepository repository) {
+    _repository = repository;
+  }
 
   void changeName(String name) {
     _name = name;
