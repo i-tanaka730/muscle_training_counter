@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:muscle_training_counter/model/training_item.dart';
 import 'package:muscle_training_counter/repository/training_repository.dart';
 
 class TrainingInputViewModel extends ChangeNotifier {
+  late TrainingRepository _repository;
   String _name = "";
   int _count = 0;
-  late TrainingRepository _repository;
+
+  String get name => _name;
+  int get count => _count;
 
   TrainingInputViewModel(TrainingRepository repository) {
     _repository = repository;
+  }
+
+  void SetItem(TrainingItem? item) {
+    if (item != null) {
+      _name = item.getName();
+      _count = item.getCount();
+    } else {
+      _name = "";
+      _count = 0;
+    }
   }
 
   void changeName(String name) {

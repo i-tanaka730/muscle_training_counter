@@ -12,6 +12,7 @@ class TrainingInputPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool _isCreate = item == null;
+    Provider.of<TrainingInputViewModel>(context).SetItem(item);
 
     return Scaffold(
       appBar: AppBar(
@@ -64,6 +65,7 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
+              controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).name),
               onChanged: (String value) {
                 Provider.of<TrainingInputViewModel>(context, listen: false).changeName(value);
               },
@@ -86,6 +88,7 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
+              controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).count.toString()),
               onChanged: (String value) {
                 Provider.of<TrainingInputViewModel>(context, listen: false).changeCount(value);
               },
@@ -99,6 +102,7 @@ class TrainingInputPage extends StatelessWidget {
                   if (_isCreate) {
                     Provider.of<TrainingInputViewModel>(context, listen: false).addTraningItem();
                   } else {
+                    // TODO
                     Provider.of<TrainingInputViewModel>(context, listen: false).deleteTraningItem("");
                   }
                   // トレーニング一覧画面に戻る

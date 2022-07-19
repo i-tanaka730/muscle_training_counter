@@ -117,7 +117,6 @@ class TraningListPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _pushTraningInputPage(context),
-        tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
