@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../repository/training_repository.dart';
+import 'package:muscle_training_counter/repository/training_repository.dart';
 
 class TrainingInputViewModel extends ChangeNotifier {
   String _name = "";

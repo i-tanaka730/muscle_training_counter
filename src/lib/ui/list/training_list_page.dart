@@ -15,7 +15,9 @@ class TraningListPage extends StatelessWidget {
     await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return TrainingInputPage(item: item);
+          var addItem = TrainingInputPage(item: item);
+          Provider.of<TrainingListViewModel>(context).load();
+          return addItem;
         },
       ),
     );
@@ -23,7 +25,8 @@ class TraningListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var traningItemlist = Provider.of<TrainingListViewModel>(context).getAllTraningItems();
+    var traningItems = Provider.of<TrainingListViewModel>(context).getItems();
+    var totalCount = Provider.of<TrainingListViewModel>(context).getTotalCount();
     return Scaffold(
       appBar: AppBar(
         title: const Text('トレーニング一覧'),
@@ -47,15 +50,15 @@ class TraningListPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 height: 60,
                 width: 50,
-                child: const Text("999999"),
+                child: Text(totalCount.toString()),
               ),
             ]),
           ),
           Expanded(
             child: ListView.builder(
-                itemCount: traningItemlist.length,
+                itemCount: traningItems.length,
                 itemBuilder: (context, index) {
-                  var item = traningItemlist[index];
+                  var item = traningItems[index];
                   return Slidable(
                     // 左方向にリストアイテムをスライドした場合のアクション
                     endActionPane: ActionPane(
