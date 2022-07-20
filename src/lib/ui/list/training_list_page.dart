@@ -25,8 +25,9 @@ class TraningListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var traningItems = Provider.of<TrainingListViewModel>(context).getItems();
-    var totalCount = Provider.of<TrainingListViewModel>(context).getTotalCount();
+    var _provider = Provider.of<TrainingListViewModel>(context);
+    var traningItems = _provider.getItems();
+    var totalCount = _provider.getTotalCount();
     return Scaffold(
       appBar: AppBar(
         title: const Text('トレーニング一覧'),
