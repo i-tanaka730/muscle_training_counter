@@ -12,7 +12,8 @@ class TrainingInputPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool _isCreate = item == null;
-    Provider.of<TrainingInputViewModel>(context).SetItem(item);
+    var _provider = Provider.of<TrainingInputViewModel>(context, listen: false);
+    _provider.SetItem(item);
 
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +35,7 @@ class TrainingInputPage extends StatelessWidget {
                   width: 100,
                   child: ElevatedButton(
                     onPressed: () {
-                      Provider.of<TrainingInputViewModel>(context).deleteTraningItem("id");
+                      _provider.deleteTraningItem();
                       Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
@@ -65,9 +66,9 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
-              controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).name),
+              controller: TextEditingController(text: _provider.name),
               onChanged: (String value) {
-                Provider.of<TrainingInputViewModel>(context, listen: false).changeName(value);
+                _provider.changeName(value);
               },
             ),
             const SizedBox(height: 20),
@@ -88,9 +89,9 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
-              controller: TextEditingController(text: Provider.of<TrainingInputViewModel>(context).count.toString()),
+              controller: TextEditingController(text: _provider.count.toString()),
               onChanged: (String value) {
-                Provider.of<TrainingInputViewModel>(context, listen: false).changeCount(value);
+                _provider.changeCount(value);
               },
             ),
             const SizedBox(height: 20),
@@ -100,10 +101,9 @@ class TrainingInputPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (_isCreate) {
-                    Provider.of<TrainingInputViewModel>(context, listen: false).addTraningItem();
+                    _provider.addTraningItem();
                   } else {
-                    // TODO
-                    Provider.of<TrainingInputViewModel>(context, listen: false).deleteTraningItem("");
+                    _provider.updateTraningItem();
                   }
                   // トレーニング一覧画面に戻る
                   Navigator.of(context).pop();
