@@ -4,17 +4,32 @@ import 'package:provider/provider.dart';
 import 'package:muscle_training_counter/ui/input/training_input_view_model.dart';
 import 'package:muscle_training_counter/model/training_item.dart';
 
-class TrainingInputPage extends StatelessWidget {
+class TrainingInputPage extends StatefulWidget {
   final TrainingItem? item;
 
   const TrainingInputPage({Key? key, this.item}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    bool _isCreate = item == null;
-    var _provider = Provider.of<TrainingInputViewModel>(context, listen: false);
-    _provider.SetItem(item);
+  _TrainingInputPageState createState() => _TrainingInputPageState();
+}
 
+class _TrainingInputPageState extends State<TrainingInputPage> {
+  late TextEditingController _nameEditingController;
+  late TextEditingController _countEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    var _provider = Provider.of<TrainingInputViewModel>(context, listen: false);
+    _provider.SetItem(widget.item);
+    _nameEditingController = TextEditingController(text: _provider.name);
+    _countEditingController = TextEditingController(text: _provider.count.toString());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var _provider = Provider.of<TrainingInputViewModel>(context, listen: false);
+    bool _isCreate = widget.item == null;
     return Scaffold(
       appBar: AppBar(
         // アプリケーションバーに表示するタイトル
@@ -66,7 +81,7 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
-              controller: TextEditingController(text: _provider.name),
+              controller: _nameEditingController,
               onChanged: (String value) {
                 _provider.changeName(value);
               },
@@ -89,7 +104,7 @@ class TrainingInputPage extends StatelessWidget {
                   ),
                 ),
               ),
-              controller: TextEditingController(text: _provider.count.toString()),
+              controller: _countEditingController,
               onChanged: (String value) {
                 _provider.changeCount(value);
               },

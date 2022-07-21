@@ -11,7 +11,7 @@ class FireStoreTrainingRepository implements TrainingRepository {
       for (final snapshot in queryDocSnapshot) {
         var name = snapshot.get('name');
         var count = snapshot.get('count');
-        var item = TrainingItem(name, count);
+        var item = TrainingItem(snapshot.id, name, count);
         items.add(item);
       }
     });
