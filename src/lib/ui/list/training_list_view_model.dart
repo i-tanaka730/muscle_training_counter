@@ -25,4 +25,18 @@ class TrainingListViewModel extends ChangeNotifier {
     _items.forEach((element) => count += element.getCount());
     return count;
   }
+
+  void upCount(String id) {
+    var count = _getUpdateTargetItem(id).getCount() + 10;
+    _repository.updateTraningItem(id, null, count);
+  }
+
+  void downCount(String id) {
+    var count = _getUpdateTargetItem(id).getCount() - 10;
+    _repository.updateTraningItem(id, null, count);
+  }
+
+  TrainingItem _getUpdateTargetItem(String id) {
+    return _items.firstWhere((element) => element.getId() == id);
+  }
 }

@@ -30,7 +30,7 @@ class FireStoreTrainingRepository implements TrainingRepository {
     if (count != null) data.addAll({'count': count});
     if (data.isEmpty) return;
 
-    FirebaseFirestore.instance.collection('menu').doc(id).set(data);
+    FirebaseFirestore.instance.collection('menu').doc(id).update(data);
   }
 
   @override

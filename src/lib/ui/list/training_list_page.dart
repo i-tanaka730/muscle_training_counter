@@ -99,11 +99,17 @@ class TraningListPage extends StatelessWidget {
                               children: <Widget>[
                                 ElevatedButton(
                                   child: const Text('+'),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _provider.upCount(item.getId());
+                                    _provider.load();
+                                  },
                                 ),
                                 ElevatedButton(
                                   child: const Text('-'),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _provider.downCount(item.getId());
+                                    _provider.load();
+                                  },
                                 ),
                               ],
                             ),
