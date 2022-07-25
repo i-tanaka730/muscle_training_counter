@@ -1,16 +1,20 @@
 # muscle_training_counter
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+A counter application for muscle training.  
+Can freely add training menus.
 
-This project is a starting point for a Flutter application.
+## Requirement
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter
+  - firebase_core
+  - cloud_firestore
+  - flutter_slidable
+  - provider
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## License
+[MIT](https://github.com/i-tanaka730/muscle_training_counter/blob/main/LICENSE)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Author
+[Ikuya Tanaka](https://github.com/i-tanaka730)
