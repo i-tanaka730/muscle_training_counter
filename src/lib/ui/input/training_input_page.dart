@@ -54,17 +54,26 @@ class _TrainingInputPageState extends State<TrainingInputPage> {
                           context: context,
                           builder: (_) {
                             return AlertDialog(
-                              content: const Text('まじで削除するよ？'),
+                              content: const Text(
+                                'まじで削除するよ？',
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
                               actions: <Widget>[
                                 TextButton(
-                                  child: const Text('いいよ'),
+                                  child: const Text(
+                                    'いいよ',
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                  ),
                                   onPressed: () {
                                     _provider.deleteTraningItem();
                                     Navigator.of(context).popUntil((route) => route.isFirst);
                                   },
                                 ),
                                 TextButton(
-                                  child: const Text('やめる'),
+                                  child: const Text(
+                                    'やめる',
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                  ),
                                   onPressed: () {
                                     _provider.deleteTraningItem();
                                     Navigator.pop(context);
