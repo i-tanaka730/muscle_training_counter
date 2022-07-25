@@ -8,6 +8,10 @@ Can freely add training menus.
 ## Requirement
 
 - Flutter
+  - firebase_core
+  - cloud_firestore
+  - flutter_slidable
+  - provider
 
 ## License
 [MIT](https://github.com/i-tanaka730/muscle_training_counter/blob/main/LICENSE)
