@@ -50,8 +50,29 @@ class _TrainingInputPageState extends State<TrainingInputPage> {
                   width: 100,
                   child: ElevatedButton(
                     onPressed: () {
-                      _provider.deleteTraningItem();
-                      Navigator.of(context).pop();
+                      showDialog<void>(
+                          context: context,
+                          builder: (_) {
+                            return AlertDialog(
+                              content: const Text('まじで削除するよ？'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('いいよ'),
+                                  onPressed: () {
+                                    _provider.deleteTraningItem();
+                                    Navigator.of(context).popUntil((route) => route.isFirst);
+                                  },
+                                ),
+                                TextButton(
+                                  child: const Text('やめる'),
+                                  onPressed: () {
+                                    _provider.deleteTraningItem();
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          });
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
