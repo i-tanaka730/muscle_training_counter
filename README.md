@@ -2,7 +2,7 @@
 
 ## Overview
 
-A counter application for muscle training.
+A counter application for muscle training.  
 Can freely add training menus.
 
 ## Requirement
