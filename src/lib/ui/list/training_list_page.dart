@@ -35,7 +35,9 @@ class TraningListPage extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
+            decoration: const BoxDecoration(
+                color: Color.fromARGB(250, 200, 220, 250),
+                border: Border(bottom: BorderSide(color: Colors.black, width: 2))),
             alignment: Alignment.center,
             height: 60,
             width: double.infinity,
@@ -45,13 +47,19 @@ class TraningListPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 height: 60,
                 width: 120,
-                child: const Text("合計"),
+                child: const Text(
+                  "合計",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
               Container(
                 alignment: Alignment.centerLeft,
                 height: 60,
                 width: 50,
-                child: Text(totalCount.toString()),
+                child: Text(
+                  totalCount.toString(),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
             ]),
           ),
@@ -86,26 +94,38 @@ class TraningListPage extends StatelessWidget {
                             alignment: Alignment.centerLeft,
                             height: 60,
                             width: 120,
-                            child: Text(item.getName()),
+                            child: Text(
+                              item.getName(),
+                              style: const TextStyle(fontSize: 16),
+                            ),
                           ),
                           Container(
                             alignment: Alignment.centerLeft,
                             height: 60,
                             width: 50,
-                            child: Text(item.getCount().toString()),
+                            child: Text(
+                              item.getCount().toString(),
+                              style: const TextStyle(fontSize: 16),
+                            ),
                           ),
                           Expanded(
                             child: ButtonBar(
                               children: <Widget>[
                                 ElevatedButton(
-                                  child: const Text('+'),
+                                  child: const Text(
+                                    '+',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
                                   onPressed: () {
                                     _provider.upCount(item.getId());
                                     _provider.load();
                                   },
                                 ),
                                 ElevatedButton(
-                                  child: const Text('-'),
+                                  child: const Text(
+                                    '-',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
                                   onPressed: () {
                                     _provider.downCount(item.getId());
                                     _provider.load();
