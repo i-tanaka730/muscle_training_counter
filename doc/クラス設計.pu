@@ -9,57 +9,55 @@ TrainingInputPage  -->  TrainingInputViewModel
 TrainingListViewModel --> TrainingRepository
 TrainingInputViewModel --> TrainingRepository
 ChangeNotifier <|-- TrainingListViewModel
+ChangeNotifier <|-- TrainingInputViewModel
 
 TrainingListViewModel --> TrainingItem
 TrainingInputViewModel --> TrainingItem
 TrainingRepository --> TrainingItem
 
 class TrainingListViewModel {
-  - trainingItemList : List<TrainingItem>
-  + List<TrainingItem> getAllTrainingItem(string Name)
-  + void updateTrainingItem(string Name, int count)
+  - _repository : TrainingRepository
+  - _items : List<TrainingItem>
+  + List<TrainingItem> getItems()
+  + int getTotalCount()
+  + void upCount(String id)
+  + void downCount(String id)
 }
 
 class TrainingInputViewModel {
-  - trainingItem : TrainingItem
-  + TrainingItem getTrainingItem(string Name)
-  + void addTrainingItem(string Name)
-  + void updateTrainingItem(string Name, int count)
-  + void deleteTrainingItem(string Name)
+  - _repository : TrainingRepository
+  _id : String
+  _naem : String
+  _count : String
+  + void addTrainingItem()
+  + void updateTraningItem()
+  + void deleteTrainingItem(String Name)
 }
 
 class TrainingRepository {
-  + List<TrainingItem> getAllTrainingItem(string Name)
-  + TrainingItem getTrainingItem(string Name)
-  + void addTrainingItem(string Name)
-  + void updateTrainingItem(string Name, int count)
-  + void deleteTrainingItem(string Name)
+  + List<TrainingItem> getAllTrainingItem()
+  + void addTrainingItem(String name, [int? count = 0])
+  + void updateTrainingItem(String id, [String? name, int? count])
+  + void deleteTrainingItem(String id)
 }
 
 note left of TrainingRepository
-  ストア(FireStore)にアクセスして
+  FireStoreにアクセスして
   データ操作を行う
 end note
 
 note right of TrainingRepository::getAllTrainingItem
-  TrainingItem.fromJsonのようにモデル化して返す
-end note
-
-note right of TrainingRepository::getTrainingItem
-  TrainingItem.fromJsonのようにモデル化して返す
-end note
-
-note right of TrainingRepository::addTrainingItem
-  同じ名前は登録不可
+  FireStoreから取得した
+  Snapshotをモデル化して返す
 end note
 
 class TrainingItem {
-  - Name : string
-  - Count : int
+  - id : string
+  - name : string
+  - count : int
+  + String getId()
   + String getName()
   + int getCount()
-  + void changeName(String name)
-  + void changeCount(int count)
 }
 
 @enduml
